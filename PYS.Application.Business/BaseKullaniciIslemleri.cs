@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace PYS.Application.Business
 {
-    internal class BaseKullaniciIslemleri
+    public class BaseKullaniciIslemleri
     {
 
-        private DbPYSEntities Db;
+        public DbPYSEntities Db;
 
         internal BaseKullaniciIslemleri()
         {
             DbPYSEntities Db = new DbPYSEntities();
         }
 
-        internal bool DoLogin(string KullaniciBilgisi, string Sifre, out VwKisiKullaniciIletisim KullaniciKisi, out string Message)
+        public bool DoLogin(string KullaniciBilgisi, string Sifre, out VwKisiKullaniciIletisim KullaniciKisi, out string Message)
         {
             bool result = false;
             KullaniciKisi = null;
