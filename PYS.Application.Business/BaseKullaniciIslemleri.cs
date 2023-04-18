@@ -18,7 +18,7 @@ namespace PYS.Application.Business
             DbPYSEntities Db = new DbPYSEntities();
         }
 
-        public bool DoLogin(string KullaniciBilgisi, string Sifre, out VwKisiKullaniciIletisim KullaniciKisi, out string Message)
+        internal bool DoLogin(string KullaniciBilgisi, string Sifre, out VwKisiKullaniciIletisim KullaniciKisi, out string Message)
         {
             bool result = false;
             KullaniciKisi = null;
