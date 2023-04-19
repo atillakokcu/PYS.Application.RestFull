@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PYS.Application.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,7 +18,8 @@ namespace PYS.Application.Web.Controllers
         [HttpGet] 
         public ActionResult GetTest()
         {
-
+            TRestClient client = new TRestClient();
+            client.Test();
             return Json("selam",JsonRequestBehavior.AllowGet);
         }
 
