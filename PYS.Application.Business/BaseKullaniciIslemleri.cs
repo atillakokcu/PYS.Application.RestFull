@@ -22,26 +22,26 @@ namespace PYS.Application.Business
         {
             bool result = false;
             KullaniciKisi = null;
-            Message= "";
+            Message = "";
 
             try
             {
                 var KisiKaydi = (from data in Db.VwKisiKullaniciIletisim where data.Iletisim == KullaniciBilgisi || data.KullaniciAdi == KullaniciBilgisi select data).FirstOrDefault();
 
-                if (KisiKaydi==null)
+                if (KisiKaydi == null)
                 {
                     Message = "Kullanıcı bilgileri hatalı";
                 }
                 else
                 {
-                    if (KisiKaydi.Sifre!=PysSecurity.StrToMd5(Sifre))
+                    if (KisiKaydi.Sifre != PysSecurity.StrToMd5(Sifre))
                     {
                         Message = "kullanıcı bilgileri hatalı";
                     }
                     else
                     {
                         KullaniciKisi = KisiKaydi; // giriş başarılıysa bilgileri out ile fırlatıyoruz ve result true yapıyoruz
-                        result= true;
+                        result = true;
                     }
                 }
             }
@@ -53,6 +53,73 @@ namespace PYS.Application.Business
 
             return result;
         }
+
+        internal TResult DoRegister(TKullaniciKisiIletisim KisiBilgileri)
+        {
+
+            TResult result = new TResult();
+
+            try
+            {
+                if (!ExistUser(KisiBilgileri))// kullanıcı varmı yokmu kontrol ediyor, yoksa kullanıcı kaydetme işlemine devam ediyor
+                {
+
+                    TblKisi Kisi = KisiBilgileri.Kisi;
+                    TblKullanicilar Kullanicilar = KisiBilgileri.Kullanici;
+                    TblKisiFirma KisiFirma = KisiBilgileri.KisiFirma;
+                    List<TblKisiIletisim> KisiIletisimler = KisiBilgileri.KisiIletisimler;
+
+                    Db.TblKisi.Add(Kisi);
+                    Db.SaveChanges();
+                    Kullanicilar.KisiId = Kisi.KisiId;
+                    Db.TblKullanicilar.Add(Kullanicilar);
+                    KisiFirma.KisiId = Kisi.KisiId;
+                    Db.TblKisiFirma.Add(KisiFirma);
+
+                    foreach (var Iletisim in KisiIletisimler)
+                    {
+                        Iletisim.KisiId = Kisi.KisiId;
+                        Db.TblKisiIletisim.Add(Iletisim);
+                        Db.SaveChanges();
+                    }
+
+                    Db.SaveChanges();
+
+                    Kullanicilar.Sifre = "";
+                    result.StatusCode = 200;
+                    result.Success = true;
+                    result.Data.Add(Kisi);
+                    result.Data.Add(KisiFirma);
+                    result.Data.Add(KisiIletisimler);
+                    result.Data.Add(Kullanicilar);
+
+
+                }
+            }
+            catch (Exception)
+            {
+
+                result.Message = "Hata Meydana geldi";
+                result.Success = false;
+                result.StatusCode = -1001;
+            }
+
+            return result;
+        }
+
+
+        private bool ExistUser(TKullaniciKisiIletisim KisiBilgileri)
+        {
+            bool result = false;
+            var Kisi = (from data in Db.TblKisi where data.Tc == KisiBilgileri.Kisi.Tc select data).FirstOrDefault();
+            if (Kisi != null)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
 
 
     }

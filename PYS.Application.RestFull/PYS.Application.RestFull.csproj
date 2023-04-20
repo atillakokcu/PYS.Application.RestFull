@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\TokenController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -103,6 +104,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PYS.Application.Business\PYS.Application.Business.csproj">
+      <Project>{fdf606fa-6eb6-47f7-9962-549c79450e41}</Project>
+      <Name>PYS.Application.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PYS.Application.Data\PYS.Application.Data.csproj">
+      <Project>{a6839151-b27c-47ef-849f-ce415f9597e9}</Project>
+      <Name>PYS.Application.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbPYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbPYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SysAdresTipleri">
           <Key>
             <PropertyRef Name="IletisimTipiId" />
@@ -37,8 +37,8 @@
             <PropertyRef Name="FirmaId" />
           </Key>
           <Property Name="FirmaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirmaKodu" Type="nvarchar" MaxLength="50" />
-          <Property Name="FirmaUnvan" Type="int" />
+          <Property Name="FirmaKodu" Type="int" />
+          <Property Name="FirmaUnvan" Type="nvarchar" MaxLength="50" />
           <Property Name="Kayittarihi" Type="datetime" />
           <Property Name="Aktif" Type="bit" />
           <Property Name="Silik" Type="bit" />
@@ -200,8 +200,7 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
     FROM [dbo].[VwKisiKullaniciIletisim] AS [VwKisiKullaniciIletisim]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbPYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -237,7 +236,7 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
             <PropertyRef Name="FirmaId" />
           </Key>
           <Property Name="FirmaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirmaKodu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirmaKodu" Type="String" />
           <Property Name="FirmaUnvan" Type="Int32" />
           <Property Name="Kayittarihi" Type="DateTime" Precision="3" />
           <Property Name="Aktif" Type="Boolean" />
