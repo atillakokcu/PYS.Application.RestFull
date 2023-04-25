@@ -6,6 +6,7 @@ using PYS.Application.Data;
 using RestSharp;
 using static System.Net.WebRequestMethods;
 using Newtonsoft.Json;
+using System.Web.Helpers;
 
 namespace PYS.Application.Web.Models
 {
@@ -31,9 +32,19 @@ namespace PYS.Application.Web.Models
         public TResult Register(TKullaniciKisiIletisim KisiBilgileri)
         {
             TResult result= new TResult();
-            string JsonKİsiBilgileri = // burada kaldım
-            client = new RestClient(TSiteSettings.ApiUrl + "//User");
-            client.
+           
+            client = new RestClient(TSiteSettings.ApiUrl + "//User"); // restfull api ye gidiyor
+            var request = new RestRequest();
+            request.AddJsonBody(KisiBilgileri);
+            client.Post(request);
+
+            var response = client.Post(request);// restfullden dönüş 
+            result = JsonConvert.DeserializeObject<TResult>(response.Content); // wepapi ye jsonu verilen tresult tipine dönüştürüyors 
+
+            return result;
+
+
+
         }
 
     }

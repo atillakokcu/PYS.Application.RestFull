@@ -24,5 +24,15 @@ namespace PYS.Application.Web.Controllers
         }
 
 
+
+        [HttpPost]
+        public ActionResult Register()
+        {
+            TRestClient restClient = new TRestClient(); 
+            //restClient.Register()
+
+            return Json(restClient, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }
