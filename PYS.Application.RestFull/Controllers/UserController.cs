@@ -27,8 +27,10 @@ namespace PYS.Application.RestFull.Controllers
         // POST api/<controller>
         public HttpResponseMessage Post(TKullaniciKisiIletisim KİsiBilgileri)
         {
-            
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            KullaniciIslemleri kullanici = new KullaniciIslemleri();
+           TResult result = kullanici.Register(KİsiBilgileri);
+            var Response = Request.CreateResponse<TResult>(HttpStatusCode.OK, result);
+            return Response;
         }
 
         // PUT api/<controller>/5

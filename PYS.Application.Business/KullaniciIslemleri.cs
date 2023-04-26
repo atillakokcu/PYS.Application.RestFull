@@ -10,10 +10,12 @@ namespace PYS.Application.Business
 {
     public class KullaniciIslemleri : BaseKullaniciIslemleri
     {
-        public string GetToken(string KullaniciBilgisi, string Sifre, out string Mesaj)
+        public TResult GetToken(string KullaniciBilgisi, string Sifre)
         {
             VwKisiKullaniciIletisim KullaniciKisi;
-            string result = "";
+            TResult result = new TResult();
+            string Mesaj;
+            string Token="";
 
             bool Success = base.DoLogin(KullaniciBilgisi, Sifre, out KullaniciKisi, out Mesaj);
 
@@ -21,8 +23,12 @@ namespace PYS.Application.Business
             {
                 if (KullaniciKisi != null)
                 {
-                   result= DoCreateToken(KullaniciKisi);
+                    Token= DoCreateToken(KullaniciKisi);
+
                 }
+                result.Success = Success;
+                result.StatusCode= 200;
+                result.Data.Add(Token);
 
             }
 

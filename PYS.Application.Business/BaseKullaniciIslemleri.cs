@@ -72,6 +72,7 @@ namespace PYS.Application.Business
                     Db.TblKisi.Add(Kisi);
                     Db.SaveChanges();
                     Kullanicilar.KisiId = Kisi.KisiId;
+                    Kullanicilar.Sifre = PysSecurity.StrToMd5(Kullanicilar.Sifre);
                     Db.TblKullanicilar.Add(Kullanicilar);
                     KisiFirma.KisiId = Kisi.KisiId;
                     Db.TblKisiFirma.Add(KisiFirma);
