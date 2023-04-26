@@ -112,8 +112,8 @@ namespace PYS.Application.Business
         private bool ExistUser(TKullaniciKisiIletisim KisiBilgileri)
         {
             bool result = false;
-            var Kisi = (from data in Db.TblKisi where data.Tc == KisiBilgileri.Kisi.Tc select data).FirstOrDefault();
-            if (Kisi != null)
+            var KisiKaydi = (from data in Db.TblKisi where data.Tc == KisiBilgileri.Kisi.Tc select data).FirstOrDefault();
+            if (KisiKaydi != null)
             {
                 result = true;
             }

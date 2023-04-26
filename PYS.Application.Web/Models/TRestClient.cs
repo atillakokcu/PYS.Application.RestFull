@@ -29,6 +29,13 @@ namespace PYS.Application.Web.Models
             
         }
 
+
+        //public TResult GetToken()
+        //{
+
+        //}
+
+
         public TResult Register(TKullaniciKisiIletisim KisiBilgileri)
         {
             TResult result= new TResult();
