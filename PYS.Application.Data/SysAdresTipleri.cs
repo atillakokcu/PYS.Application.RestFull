@@ -16,11 +16,11 @@ namespace PYS.Application.Data
     {
         public int IletisimTipiId { get; set; }
         public string IletisimTipi { get; set; }
-        public Nullable<bool> Adres { get; set; }
-        public Nullable<bool> EvTelefonu { get; set; }
-        public Nullable<bool> Istelefonu { get; set; }
-        public Nullable<bool> CepTelefonu { get; set; }
-        public Nullable<bool> Mail { get; set; }
+        public string Adres { get; set; }
+        public string EvTelefonu { get; set; }
+        public string Istelefonu { get; set; }
+        public string CepTelefonu { get; set; }
+        public string Mail { get; set; }
         public Nullable<System.DateTime> KayitTarihi { get; set; }
         public Nullable<bool> Aktif { get; set; }
         public Nullable<bool> Silik { get; set; }

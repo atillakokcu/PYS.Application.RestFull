@@ -18,7 +18,7 @@ namespace PYS.Application.Business
             DbPYSEntities Db = new DbPYSEntities();
         }
 
-        internal bool DoLogin(string KullaniciBilgisi, string Sifre, out VwKisiKullaniciIletisim KullaniciKisi, out string Message)
+        internal bool DoLogin(string KullaniciBilgisi, string Sifre, out VwKisiKullaniciIletisim KullaniciKisi, out string Message, string SecretKey)
         {
             bool result = false;
             KullaniciKisi = null;
@@ -26,7 +26,7 @@ namespace PYS.Application.Business
 
             try
             {
-                var KisiKaydi = (from data in Db.VwKisiKullaniciIletisim where data.Iletisim == KullaniciBilgisi || data.KullaniciAdi == KullaniciBilgisi select data).FirstOrDefault();
+                var KisiKaydi = (from data in Db.VwKisiKullaniciIletisim where (data.Iletisim == KullaniciBilgisi || data.KullaniciAdi == KullaniciBilgisi)&& data.Guid.Value.ToString()== SecretKey select data).FirstOrDefault();
 
                 if (KisiKaydi == null)
                 {

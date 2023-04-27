@@ -33,7 +33,7 @@ namespace PYS.Application.Security.TestForm
         {
             KullaniciIslemleri kullaniciIslemleri = new KullaniciIslemleri();
             string Mesaj = "";
-            string Token= kullaniciIslemleri.GetToken("adasdsa", "asdas",out Mesaj);
+            //string Token= kullaniciIslemleri.GetToken("adasdsa", "asdas",out Mesaj);
             
         }
     }

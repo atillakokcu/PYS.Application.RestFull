@@ -4,18 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DbPYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DbPYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SysAdresTipleri">
           <Key>
             <PropertyRef Name="IletisimTipiId" />
           </Key>
           <Property Name="IletisimTipiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IletisimTipi" Type="nvarchar" MaxLength="50" />
-          <Property Name="Adres" Type="bit" />
-          <Property Name="EvTelefonu" Type="bit" />
-          <Property Name="Istelefonu" Type="bit" />
-          <Property Name="CepTelefonu" Type="bit" />
-          <Property Name="Mail" Type="bit" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="EvTelefonu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Istelefonu" Type="nvarchar" MaxLength="50" />
+          <Property Name="CepTelefonu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
           <Property Name="KayitTarihi" Type="datetime" />
           <Property Name="Aktif" Type="bit" />
           <Property Name="Silik" Type="bit" />
@@ -200,7 +200,8 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
     FROM [dbo].[VwKisiKullaniciIletisim] AS [VwKisiKullaniciIletisim]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbPYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -210,11 +211,11 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
           </Key>
           <Property Name="IletisimTipiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IletisimTipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Adres" Type="Boolean" />
-          <Property Name="EvTelefonu" Type="Boolean" />
-          <Property Name="Istelefonu" Type="Boolean" />
-          <Property Name="CepTelefonu" Type="Boolean" />
-          <Property Name="Mail" Type="Boolean" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EvTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Istelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CepTelefonu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
           <Property Name="Aktif" Type="Boolean" />
           <Property Name="Silik" Type="Boolean" />
@@ -236,8 +237,8 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
             <PropertyRef Name="FirmaId" />
           </Key>
           <Property Name="FirmaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirmaKodu" Type="String" />
-          <Property Name="FirmaUnvan" Type="Int32" />
+          <Property Name="FirmaKodu" Type="Int32" />
+          <Property Name="FirmaUnvan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Kayittarihi" Type="DateTime" Precision="3" />
           <Property Name="Aktif" Type="Boolean" />
           <Property Name="Silik" Type="Boolean" />

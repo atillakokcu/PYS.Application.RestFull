@@ -15,8 +15,8 @@ namespace PYS.Application.Data
     public partial class TblFirmalar
     {
         public int FirmaId { get; set; }
-        public string FirmaKodu { get; set; }
-        public Nullable<int> FirmaUnvan { get; set; }
+        public Nullable<int> FirmaKodu { get; set; }
+        public string FirmaUnvan { get; set; }
         public Nullable<System.DateTime> Kayittarihi { get; set; }
         public Nullable<bool> Aktif { get; set; }
         public Nullable<bool> Silik { get; set; }

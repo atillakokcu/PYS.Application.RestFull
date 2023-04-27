@@ -30,10 +30,21 @@ namespace PYS.Application.Web.Models
         }
 
 
-        //public TResult GetToken()
-        //{
+        public string GetToken(TApiUser User)
+        {
+            string result = "";
+            client = new RestClient(TSiteSettings.ApiUrl + "//Token");
+            var request = new RestRequest();
+            request.AddJsonBody<TApiUser>(User);
+            var response = client.Post(request);
+            TResult ResultData = JsonConvert.DeserializeObject<TResult>(response.Content);
+            if (ResultData.Success)
+            {
+                result = ResultData.Data[0].ToString();
+            }
 
-        //}
+            return result;
+        }
 
 
         public TResult Register(TKullaniciKisiIletisim KisiBilgileri)
