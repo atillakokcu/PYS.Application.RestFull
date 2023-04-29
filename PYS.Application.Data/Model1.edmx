@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbPYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbPYSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="SysAdresTipleri">
           <Key>
             <PropertyRef Name="IletisimTipiId" />
@@ -75,6 +75,7 @@
           <Property Name="Aktif" Type="bit" />
           <Property Name="Silik" Type="bit" />
           <Property Name="KayitVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="FirmaGuid" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="TblKisiIletisim">
           <Key>
@@ -152,6 +153,22 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
           <Property Name="SecretKey" Type="nvarchar" MaxLength="50" />
           <Property Name="Unvan" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DbPYS.dbo.VwTblFirmalar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwTblFirmalar">
+          <Key>
+            <PropertyRef Name="FirmaId" />
+          </Key>
+          <Property Name="FirmaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmaKodu" Type="int" />
+          <Property Name="FirmaUnvan" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kayittarihi" Type="datetime" />
+          <Property Name="Aktif" Type="bit" />
+          <Property Name="Silik" Type="bit" />
+          <Property Name="KayitVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="FirmaGuid" Type="uniqueidentifier" />
+          <Property Name="SecretKey" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="DbPYSModelStoreContainer">
           <EntitySet Name="SysAdresTipleri" EntityType="Self.SysAdresTipleri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysUnvanlar" EntityType="Self.SysUnvanlar" Schema="dbo" store:Type="Tables" />
@@ -199,9 +216,21 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
     [VwKisiKullaniciIletisim].[Unvan] AS [Unvan]
     FROM [dbo].[VwKisiKullaniciIletisim] AS [VwKisiKullaniciIletisim]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VwTblFirmalar" EntityType="Self.VwTblFirmalar" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwTblFirmalar].[FirmaId] AS [FirmaId], 
+    [VwTblFirmalar].[FirmaKodu] AS [FirmaKodu], 
+    [VwTblFirmalar].[FirmaUnvan] AS [FirmaUnvan], 
+    [VwTblFirmalar].[Kayittarihi] AS [Kayittarihi], 
+    [VwTblFirmalar].[Aktif] AS [Aktif], 
+    [VwTblFirmalar].[Silik] AS [Silik], 
+    [VwTblFirmalar].[KayitVersiyonu] AS [KayitVersiyonu], 
+    [VwTblFirmalar].[FirmaGuid] AS [FirmaGuid], 
+    [VwTblFirmalar].[SecretKey] AS [SecretKey]
+    FROM [dbo].[VwTblFirmalar] AS [VwTblFirmalar]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbPYSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -275,6 +304,7 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
           <Property Name="Aktif" Type="Boolean" />
           <Property Name="Silik" Type="Boolean" />
           <Property Name="KayitVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="FirmaGuid" Type="Guid" />
         </EntityType>
         <EntityType Name="TblKisiIletisim">
           <Key>
@@ -358,7 +388,22 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
           <EntitySet Name="TblKullanicilar" EntityType="Self.TblKullanicilar" />
           <EntitySet Name="VwFirmalar" EntityType="Self.VwFirmalar" />
           <EntitySet Name="VwKisiKullaniciIletisim" EntityType="Self.VwKisiKullaniciIletisim" />
+          <EntitySet Name="VwTblFirmalar" EntityType="DbPYSModel.VwTblFirmalar" />
         </EntityContainer>
+        <EntityType Name="VwTblFirmalar">
+          <Key>
+            <PropertyRef Name="FirmaId" />
+          </Key>
+          <Property Name="FirmaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmaKodu" Type="Int32" />
+          <Property Name="FirmaUnvan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kayittarihi" Type="DateTime" Precision="3" />
+          <Property Name="Aktif" Type="Boolean" />
+          <Property Name="Silik" Type="Boolean" />
+          <Property Name="KayitVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="FirmaGuid" Type="Guid" />
+          <Property Name="SecretKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -430,6 +475,7 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
           <EntitySetMapping Name="TblKisiFirma">
             <EntityTypeMapping TypeName="DbPYSModel.TblKisiFirma">
               <MappingFragment StoreEntitySet="TblKisiFirma">
+                <ScalarProperty Name="FirmaGuid" ColumnName="FirmaGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="KisiId" ColumnName="KisiId" />
                 <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
@@ -511,6 +557,21 @@ warning 6002: The table/view 'DbPYS.dbo.VwKisiKullaniciIletisim' does not have a
                 <ScalarProperty Name="FirmaUnvan" ColumnName="FirmaUnvan" />
                 <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
                 <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwTblFirmalar">
+            <EntityTypeMapping TypeName="DbPYSModel.VwTblFirmalar">
+              <MappingFragment StoreEntitySet="VwTblFirmalar">
+                <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+                <ScalarProperty Name="FirmaGuid" ColumnName="FirmaGuid" />
+                <ScalarProperty Name="KayitVersiyonu" ColumnName="KayitVersiyonu" />
+                <ScalarProperty Name="Silik" ColumnName="Silik" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+                <ScalarProperty Name="Kayittarihi" ColumnName="Kayittarihi" />
+                <ScalarProperty Name="FirmaUnvan" ColumnName="FirmaUnvan" />
+                <ScalarProperty Name="FirmaKodu" ColumnName="FirmaKodu" />
+                <ScalarProperty Name="FirmaId" ColumnName="FirmaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,6 +14,7 @@
         <EntityTypeShape EntityType="DbPYSModel.TblKullanicilar" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DbPYSModel.VwFirmalar" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DbPYSModel.VwKisiKullaniciIletisim" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbPYSModel.VwTblFirmalar" Width="1.5" PointX="7.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
