@@ -26,7 +26,7 @@ namespace PYS.Application.Business
 
             try
             {
-                var KisiKaydi = (from data in Db.VwKisiKullaniciIletisim where (data.Iletisim == KullaniciBilgisi || data.KullaniciAdi == KullaniciBilgisi)&& data.Guid.Value.ToString()== SecretKey select data).FirstOrDefault();
+                var KisiKaydi = (from data in Db.VwKisiKullaniciIletisim where (data.Iletisim == KullaniciBilgisi || data.KullaniciAdi == KullaniciBilgisi)&& data.SecretKey== SecretKey select data).FirstOrDefault();
 
                 if (KisiKaydi == null)
                 {

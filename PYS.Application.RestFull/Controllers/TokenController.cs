@@ -26,22 +26,31 @@ namespace PYS.Application.RestFull.Controllers
         }
 
         // POST api/<controller>
-        public HttpResponseMessage Post(TUser User, string SecretKey)
+        public HttpResponseMessage Post(TUser User)
         {
-            HttpResponseMessage Response = new HttpResponseMessage();
+            
+            IEnumerable<string> values;
+            HttpResponseMessage Response= new HttpResponseMessage();
+            bool GetSecretKey = Request.Headers.TryGetValues("SecretKey", out values);
+            if (GetSecretKey)
+            {
+                 string SecretKey = values.First();
+                Business.KullaniciIslemleri kullanici = new Business.KullaniciIslemleri();
+                TResult result = kullanici.GetToken(User.Username, User.Password, SecretKey);
+                if (!result.Success)
+                {
+                    Response = Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+                else
+                {
+                    Response= Request.CreateResponse<TResult>(HttpStatusCode.OK,result);
+                }
+                
 
-            KullaniciIslemleri kullanici = new KullaniciIslemleri();
-            TResult result = kullanici.GetToken(User.Username, User.Password, SecretKey);
-            if (!result.Success)
-            {
-                Response= Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-            else
-            {
-                Response= Request.CreateResponse<TResult>(HttpStatusCode.OK, result);
             }
 
             return Response;
+
 
         }
 

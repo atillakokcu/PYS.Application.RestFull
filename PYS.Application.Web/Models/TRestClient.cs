@@ -30,12 +30,15 @@ namespace PYS.Application.Web.Models
         }
 
 
-        public string GetToken(TApiUser User)
+        public string GetToken(string Username, string Password)
         {
+            TApiUser user = new TApiUser();
+            user.Username = Username;
+            user.Password = Password;
             string result = "";
             client = new RestClient(TSiteSettings.ApiUrl + "//Token");
             var request = new RestRequest();
-            request.AddJsonBody<TApiUser>(User);
+            request.AddJsonBody<TApiUser>(user);
             var response = client.Post(request);
             TResult ResultData = JsonConvert.DeserializeObject<TResult>(response.Content);
             if (ResultData.Success)

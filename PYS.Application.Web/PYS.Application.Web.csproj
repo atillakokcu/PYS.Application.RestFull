@@ -943,10 +943,12 @@
     <Content Include="assets\libs\wnumb\wNumb.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Jquery\jquery-3.6.4.min.js" />
+    <Content Include="Jquery\Main.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PanelController.cs" />
     <Compile Include="Global.asax.cs">
@@ -994,6 +996,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Api\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PYS.Application.Data\PYS.Application.Data.csproj">

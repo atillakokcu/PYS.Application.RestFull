@@ -76,6 +76,7 @@
           <Property Name="Silik" Type="bit" />
           <Property Name="KayitVersiyonu" Type="timestamp" StoreGeneratedPattern="Computed" />
           <Property Name="FirmaGuid" Type="uniqueidentifier" />
+          <Property Name="SecretKey" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TblKisiIletisim">
           <Key>
@@ -305,6 +306,7 @@ warning 6002: The table/view 'DbPYS.dbo.VwTblFirmalar' does not have a primary k
           <Property Name="Silik" Type="Boolean" />
           <Property Name="KayitVersiyonu" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="FirmaGuid" Type="Guid" />
+          <Property Name="SecretKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblKisiIletisim">
           <Key>
@@ -475,6 +477,7 @@ warning 6002: The table/view 'DbPYS.dbo.VwTblFirmalar' does not have a primary k
           <EntitySetMapping Name="TblKisiFirma">
             <EntityTypeMapping TypeName="DbPYSModel.TblKisiFirma">
               <MappingFragment StoreEntitySet="TblKisiFirma">
+                <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
                 <ScalarProperty Name="FirmaGuid" ColumnName="FirmaGuid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="KisiId" ColumnName="KisiId" />
